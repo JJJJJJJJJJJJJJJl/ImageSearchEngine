@@ -1,7 +1,8 @@
 from flask import Flask, request;
 from flask_cors import CORS;
 
-import classifier;
+import descriptor;
+import processor;
 
 app = Flask(__name__);
 CORS(app);
@@ -9,9 +10,10 @@ CORS(app);
 @app.route("/classify", methods=["POST"])
 def get_labels():
     items = None;
+    items_perm = None;
     try:
         items = request.files.items();
-        print(items);
+        items_perm = [it for it in items];
         print("Images successfully received");
     except Exception as err:
         # H_ERROR stands for Handled Error (Exception)
@@ -23,11 +25,20 @@ def get_labels():
 
     """ BEGIN OF PIPELINE """
     # Assigning each image to a description phrase
-    labels = classifier.classify(items);
+    labels = descriptor.describe(items_perm);
+    print("labels: ", end='');
     print(labels);
 
     # Processing descriptions (phrases -> set of words)
-    #labels = ;
+    labels = processor.process(labels);
+    print("labels: ", end='');
+    print(labels);
+
+    i = 0;
+    for item in items_perm:
+        print(item[0]);
+        print(labels[i]);
+        i = i+1;
 
     # Create trie (given images and processed descriptions)
 

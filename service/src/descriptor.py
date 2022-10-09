@@ -1,23 +1,20 @@
 """ 
-    Module responsible for 'classifying' recevied images.
-
-    Note: The use of the word classifying is meant to be interpreted
-        as assigning each image a description. Obviously, there are no 
-         virtual classes here. It's just that classifying sound better
-         than describing. Classifier > Descriptor.
+    Module responsible for describing received images.
 """
 
 from PIL import Image;
 import loader;
 import env;
 
-def classify(items):
+def describe(items):
     loader.load_model(env.path);
 
     max_length = 16;
     num_beams = 4;
     gen_kwargs = {"max_length": max_length, "num_beams": num_beams};
+    
     images = [];
+    
     for item in items:
         key = item[0];
         img = item[1];
