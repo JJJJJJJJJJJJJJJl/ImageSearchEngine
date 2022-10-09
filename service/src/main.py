@@ -11,18 +11,36 @@ def get_labels():
     items = None;
     try:
         items = request.files.items();
+        print(items);
         print("Images successfully received");
     except Exception as err:
         # H_ERROR stands for Handled Error (Exception)
         print("H_ERROR: ", end = '');
         print(err);
 
+    # Image descriptions
+    global labels;
+
+    """ BEGIN OF PIPELINE """
+    # Assigning each image to a description phrase
     labels = classifier.classify(items);
     print(labels);
 
+    # Processing descriptions (phrases -> set of words)
+    #labels = ;
+
+    # Create trie (given images and processed descriptions)
+
+    # Save trie in server database or send it back to client (?) **
+
+    """ END OF PIPELINE """
+
     """
         Return will possibly be a dict containing trie structure...I'm not sure.
-        Should the client query the server or query the trie that is running on his browser?
+        ** Should the client query the server or query the trie that is running on his browser?
+            - Assuming client has uploaded photos are in browser reach, the client 
+            could simply query against the locally stored trie instead of sending
+            a request each time the query string changes. 
     """
     return "temp";
 

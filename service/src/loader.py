@@ -5,7 +5,6 @@
 import os;
 
 import torch;
-import torchvision;
 from transformers import VisionEncoderDecoderModel, ViTFeatureExtractor, AutoTokenizer, AutoModel;
 
 device = "cuda" if torch.cuda.is_available() else "cpu";

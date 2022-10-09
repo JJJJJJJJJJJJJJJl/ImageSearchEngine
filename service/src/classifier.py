@@ -22,7 +22,7 @@ def classify(items):
         key = item[0];
         img = item[1];
         i_image = Image.open(img);
-        i_image.save(env.dir+"/album/"+key+".png");
+        i_image.save(env.dir+"/album/"+key);
         if i_image.mode != "RGB":
             i_image = i_image.convert(mode="RGB");
         images.append(i_image);
