@@ -1,10 +1,11 @@
-import React, {useState} from "react";
+import {useState, ReactElement} from "react";
 
-export default function SearchBar({ph}: {ph: string}) {
+export default function SearchBar({ph}: {ph: string}): ReactElement {
     const [query, on_query_change] = useState<string | null>("");
 
-    const handle_query_change = event => {
+    function handle_query_change(event: React.ChangeEvent<HTMLInputElement>): void{
         on_query_change(event.target.value);
+        return null;
     };
 
     return (

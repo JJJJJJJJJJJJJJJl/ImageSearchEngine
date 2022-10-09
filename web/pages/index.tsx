@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
+import {ReactElement, useEffect, useState} from 'react';
 import SearchBar from '../components/SearchBar';
 import Image from 'next/image';
 
 const MAX_IMAGE_UPLOAD: number = 10; 
 
-export default function Home() {
+export default function Home(): ReactElement{
     const [images, set_images] = useState<Array<Blob> | null>(new Array<Blob>());
     const [images_url, set_images_url] = useState<Array<string> | null>(new Array<string>(MAX_IMAGE_UPLOAD));
 
@@ -14,10 +14,8 @@ export default function Home() {
             const new_images_url = new Array<string>(MAX_IMAGE_UPLOAD);
             var index: number = 0;
             while(index < images_size){
-                console.log("image: " + images[index]);
                 new_images_url.push(URL.createObjectURL(images[index++]));
-            } 
-            //images.forEach(image => new_images_url.push(URL.createObjectURL(image)));
+            }
             set_images_url(new_images_url);
         }
         else if(images_size > 0){
@@ -38,12 +36,12 @@ export default function Home() {
         let form = new FormData();
         let image_number = 0;
         for(let image of images){
-            form.append("image"+image_number++, image);
+            form.append(images[image_number++]["name"].toString(), image);
         }
         return form;
     }
 
-    async function send_images(){
+    async function send_images(): Promise<void>{
         const form = get_form();
         const res = await fetch("http://localhost:7777/classify", {
             method: "POST",
@@ -56,14 +54,14 @@ export default function Home() {
     return (
     <div className='flex-row justify-around bg-pink-300'>
         <h1 className="text-3xl font-bold underline text-red-600 mx-10 my-10 py-10">
-        JJJJJJwoop
+        JJJJJJ
         </h1>
         <SearchBar ph={"slatº,~:`-"}></SearchBar>
         <input type="file" multiple accept="image/*" onChange={on_image_change} />
         {/* 
             TODO: create component for uploaded images
         */}
-        { images_url.map(imageSrc => <Image key={imageSrc} src={imageSrc} width={500} height={500}/>)}
+        { images_url.map(imageSrc => <Image key={imageSrc} src={imageSrc} width={250} height={250}/>)}
         {/* 
             TODO: create component for button (add it to searchbar component aswell);
         */}
