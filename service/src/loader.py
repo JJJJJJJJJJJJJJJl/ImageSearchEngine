@@ -1,12 +1,12 @@
 """ 
-    Module responsible for (down)loading the model..
- """
+    Module responsible for (down)loading the model.
+"""
 
-import os
+import os;
 
-import torch
-import torchvision
-from transformers import VisionEncoderDecoderModel, ViTFeatureExtractor, AutoTokenizer, AutoModel
+import torch;
+import torchvision;
+from transformers import VisionEncoderDecoderModel, ViTFeatureExtractor, AutoTokenizer, AutoModel;
 
 device = "cuda" if torch.cuda.is_available() else "cpu";
 

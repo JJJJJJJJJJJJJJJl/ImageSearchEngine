@@ -1,6 +1,15 @@
-from PIL import Image
-import loader
-import env
+""" 
+    Module responsible for 'classifying' recevied images.
+
+    Note: The use of the word classifying is meant to be interpreted
+        as assigning each image a description. Obviously, there are no 
+         virtual classes here. It's just that classifying sound better
+         than describing. Classifier > Descriptor.
+"""
+
+from PIL import Image;
+import loader;
+import env;
 
 def classify(items):
     loader.load_model(env.path);
