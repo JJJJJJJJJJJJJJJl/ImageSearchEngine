@@ -45,7 +45,7 @@ export default function Home() {
 
     async function send_images(){
         const form = get_form();
-        const res = await fetch("http://localhost:7777/predict", {
+        const res = await fetch("http://localhost:7777/classify", {
             method: "POST",
             body: form
         });
@@ -56,7 +56,7 @@ export default function Home() {
     return (
     <div className='flex-row justify-around bg-pink-300'>
         <h1 className="text-3xl font-bold underline text-red-600 mx-10 my-10 py-10">
-        JJJJJJ
+        JJJJJJwoop
         </h1>
         <SearchBar ph={"slatº,~:`-"}></SearchBar>
         <input type="file" multiple accept="image/*" onChange={on_image_change} />

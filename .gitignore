@@ -2,6 +2,7 @@
 
 service/models_torchsave/*
 service/album
+service/src/__pycache__
 web/node_modules
 web/.next
 web/package-lock.json
