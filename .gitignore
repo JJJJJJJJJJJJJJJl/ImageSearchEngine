@@ -1,0 +1,9 @@
+.DS_Store
+
+service/models_torchsave/*
+service/album
+web/node_modules
+web/.next
+web/package-lock.json
+mobile/.expo
+mobile/.expo-shared
