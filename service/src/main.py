@@ -36,7 +36,6 @@ def get_labels():
     """ END OF PIPELINE """
 
     """
-        Return will possibly be a dict containing trie structure...I'm not sure.
         ** Should the client query the server or query the trie that is running on his browser?
             - Assuming client has uploaded photos are in browser reach, the client 
             could simply query against the locally stored trie instead of sending
