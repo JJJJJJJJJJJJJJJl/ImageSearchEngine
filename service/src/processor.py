@@ -12,7 +12,6 @@ def tokenize(labels):
 def swr(tokenized_labels):
     swrd_labels = []
     stopwords = load_stopwords();
-    print(stopwords);
     for tkl in tokenized_labels:
         swrd_labels.append([word for word in tkl if word not in stopwords]);
     return swrd_labels;
