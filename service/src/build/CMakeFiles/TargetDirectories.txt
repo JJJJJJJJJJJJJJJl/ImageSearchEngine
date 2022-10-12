@@ -1,0 +1,5 @@
+/Users/jjjjjj/Desktop/JJJJJJ/image-search/service/src/build/CMakeFiles/trie.dir
+/Users/jjjjjj/Desktop/JJJJJJ/image-search/service/src/build/CMakeFiles/edit_cache.dir
+/Users/jjjjjj/Desktop/JJJJJJ/image-search/service/src/build/CMakeFiles/rebuild_cache.dir
+/Users/jjjjjj/Desktop/JJJJJJ/image-search/service/src/build/pybind11/CMakeFiles/edit_cache.dir
+/Users/jjjjjj/Desktop/JJJJJJ/image-search/service/src/build/pybind11/CMakeFiles/rebuild_cache.dir
