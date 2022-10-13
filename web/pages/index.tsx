@@ -33,6 +33,9 @@ export default function Home(): ReactElement{
     };
 
     function get_form(): FormData{
+        if(images.length == 0){
+            return null;
+        }
         let form = new FormData();
         let image_number = 0;
         for(let image of images){
@@ -43,6 +46,10 @@ export default function Home(): ReactElement{
 
     async function send_images(): Promise<void>{
         const form = get_form();
+        if(form == null) {
+            alert("You might want to add some images");
+            return null;
+        }
         const res = await fetch("http://localhost:7777/classify", {
             method: "POST",
             body: form
