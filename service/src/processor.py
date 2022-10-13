@@ -16,6 +16,16 @@ def swr(tokenized_labels):
         swrd_labels.append([word for word in tkl if word not in stopwords]);
     return swrd_labels;
 
+def del_duplicates(juicy_labels):
+    for juicy_label in juicy_labels:
+        juicy_labels_set = set();
+        for word in juicy_label:
+            if word not in juicy_labels_set:
+                juicy_labels_set.add(word);
+            else:
+                juicy_label.remove(word);
+    return juicy_labels;
+
 def process(labels):
 
     # Tokenization
@@ -26,6 +36,12 @@ def process(labels):
 
     # Stop word removal
     processed_labels = swr(processed_labels);
+
+    for pl in processed_labels:
+        print(pl);
+
+    # Remove duplicates
+    processed_labels = del_duplicates(processed_labels);
 
     for pl in processed_labels:
         print(pl);
