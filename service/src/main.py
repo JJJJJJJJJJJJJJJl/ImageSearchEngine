@@ -3,6 +3,7 @@ from flask_cors import CORS;
 
 import descriptor;
 import processor;
+import trie;
 
 app = Flask(__name__);
 CORS(app);
@@ -34,13 +35,14 @@ def get_labels():
     print("labels: ", end='');
     print(labels);
 
-    i = 0;
+    """ i = 0;
     for item in items_perm:
         print(item[0]);
         print(labels[i]);
-        i = i+1;
+        i = i+1; """
 
     # Create trie (given images and processed descriptions)
+    trie_root = trie.create(items_perm, labels);
 
     # Save trie in server database or send it back to client (?) **
 

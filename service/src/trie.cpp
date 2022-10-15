@@ -7,27 +7,32 @@ namespace py = pybind11;
 
 class TrieNode{
     private:
+        bool root;
         char c;
-        std::vector<std::string> images_url;
+        std::vector<int> images_id;
         std::vector<TrieNode *> children;
 
     public:
-        TrieNode(char c_, std::vector<std::string> images_url_):
+        TrieNode(bool root_, char c_):
+            root(root_),
             c(c_),
-            images_url(images_url_),
             children(26)
         { };
+
+        bool is_root(){
+            return root;
+        }
 
         char get_c(){
             return c;
         }
 
-        std::vector<std::string> get_images_url(){
-            return images_url;
+        std::vector<int> get_ids(){
+            return images_id;
         }
 
-        bool add_image_url(std::string image_url){
-            images_url.push_back(image_url);
+        bool add_image_id(int image_id){
+            images_id.push_back(image_id);
             return true;
         }
 
@@ -43,10 +48,47 @@ class TrieNode{
             char child_c = child->get_c();
             char child_index = child_c - 'a';
             if(child_index > -1 && child_index < 26){
-                children[child_index] = child;
+                if(children[child_index] == NULL){
+                    children[child_index] = child;
+                }
                 return true;
             }
             return false;
+        }
+
+        void traverse_and_update(TrieNode * cur_node, int image_id, std::string s, int cur_index){
+            int size = s.length();
+            cur_node->add_image_id(image_id);
+
+            // Lead node
+            if(cur_index == size){
+                return;
+            }
+
+            char c = s[cur_index];
+            TrieNode * new_node = new TrieNode(false, c);
+            std::cout << "new-node c: " << c << " | cur_index: " << cur_index << std::endl;
+            cur_node->add_child(new_node);
+            traverse_and_update(cur_node->get_child(c), image_id, s, cur_index+1);
+            
+            return;
+        }
+
+        void update_trie(TrieNode * root, std::string image_url, std::vector<std::string> image_description){
+            /* Get image_url mapping */
+            // If image_url exists on MAP, return assigned ID
+            // Otherwise assign ID to it
+            // Note: Better to store ID's than whole url strings on trie (trading time for memory)
+            int image_id = 1;
+
+            /* Recursively traverse trie adding ID */
+            for(std::string s : image_description){
+                traverse_and_update(root, image_id, s, 0);
+            }
+        }
+
+        void display_trie(){
+            
         }
 };
 
@@ -56,10 +98,7 @@ PYBIND11_MODULE(trie, handle){
     py::class_<TrieNode>(
         handle, "TrieNode"    
     )
-        .def(py::init<char, std::vector<std::string>>())
-        .def("get_c", &TrieNode::get_c)
-        .def("get_images_url", &TrieNode::get_images_url)
-        .def("add_child", &TrieNode::add_child)
-        .def("get_child", &TrieNode::get_child)
+        .def(py::init<bool, char>())
+        .def("update_trie", &TrieNode::update_trie)
     ;
 }

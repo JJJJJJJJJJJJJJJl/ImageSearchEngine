@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/trie.dir/trie.cpp.o"
   "CMakeFiles/trie.dir/trie.cpp.o.d"
-  "trie.cpython-39-darwin.so"
+  "trie.cpython-310-darwin.so"
   "trie.pdb"
 )
 
