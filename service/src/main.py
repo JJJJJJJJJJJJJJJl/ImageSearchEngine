@@ -9,7 +9,7 @@ app = Flask(__name__);
 CORS(app);
 
 @app.route("/classify", methods=["POST"])
-def get_labels():
+def classify():
     items = None;
     items_perm = None;
     try:

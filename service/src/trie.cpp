@@ -67,7 +67,6 @@ class TrieNode{
 
             char c = s[cur_index];
             TrieNode * new_node = new TrieNode(false, c);
-            std::cout << "new-node c: " << c << " | cur_index: " << cur_index << std::endl;
             cur_node->add_child(new_node);
             traverse_and_update(cur_node->get_child(c), image_id, s, cur_index+1);
             
