@@ -2,7 +2,7 @@ import {ReactElement, useEffect, useState} from 'react';
 import SearchBar from '../components/SearchBar';
 import Image from 'next/image';
 
-const MAX_IMAGE_UPLOAD: number = 10; 
+const MAX_IMAGE_UPLOAD: number = 20; 
 
 export default function Home(): ReactElement{
     const [images, set_images] = useState<Array<Blob> | null>(new Array<Blob>());
@@ -59,20 +59,38 @@ export default function Home(): ReactElement{
     }
 
     return (
-    <div className='flex-row justify-around bg-pink-300'>
-        <h1 className="text-3xl font-bold underline text-red-600 mx-10 my-10 py-10">
-        JJJJJJ
-        </h1>
-        <SearchBar ph={"slatº,~:`-"}></SearchBar>
-        <input type="file" multiple accept="image/*" onChange={on_image_change} />
-        {/* 
-            TODO: create component for uploaded images
-        */}
-        { images_url.map(imageSrc => <Image key={imageSrc} src={imageSrc} width={250} height={250}/>)}
-        {/* 
-            TODO: create component for button (add it to searchbar component aswell);
-        */}
-        <button onClick={send_images} className="px-4 text-white bg-red-600 ">Submit</button>
+    <div className="flex items-center justify-center bg-contain w-full m-0 p-0 bg-[url('/lean.webp')]">
+        <div className="flex-row items-center justify-center bg-739 p-40 pt-10 m-44 mt-10 border-solid rounded">
+            <h1 className="text-3xl text-center text-orange-100 m-10">
+            +++Image Search+++
+            </h1>
+            <div className="flex justify-between">
+                <label className="bg-pink-200 text-slate-600 px-4 py-3 m-1">
+                    <input type="file" multiple accept="image/*" onChange={on_image_change} className="text-red-600 hidden"/>
+                    Choose your images ^^
+                </label>
+                {/* 
+                    TODO: create component for button (add it to searchbar component aswell);
+                */}
+                <button onClick={send_images} className="px-4 py-3 m-1 text-slate-600 bg-pink-200">Submit</button>
+            </div>
+            <div className="flex flex-wrap overflow-y-scroll h-96 mt-10">
+                {/* 
+                    TODO: create component for uploaded images
+                */}
+                { images_url.map(imageSrc => 
+                    <div className="flex justify-center basis-1/4 m-6 grow w-min border-dashed rounded">
+                        <Image key={imageSrc} src={imageSrc} width={125} height={125}/>
+                    </div>
+                )}
+            </div>
+        </div>
     </div>
     );
 };
+
+/*  
+    TODO: create component for this (search bar):
+
+        <SearchBar ph={"slatº,~:`-"}></SearchBar>
+*/

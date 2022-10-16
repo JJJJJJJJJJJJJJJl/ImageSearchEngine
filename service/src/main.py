@@ -35,11 +35,11 @@ def process_input():
     print("labels: ", end='');
     print(labels);
 
-    """ i = 0;
+    i = 0;
     for item in items_perm:
         print(item[0]);
         print(labels[i]);
-        i = i+1; """
+        i = i+1;
 
     # Create trie (given images and processed descriptions)
     trie.create(items_perm, labels);

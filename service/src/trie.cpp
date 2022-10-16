@@ -101,13 +101,6 @@ class TrieNode{
         std::vector<std::string> get_query_results(TrieNode * cur_node, std::string query){
             for(char c : query){
                 cur_node = cur_node->get_child(c);
-                if(cur_node != NULL){
-                    std::cout << cur_node->get_c() << std::endl;
-                }
-                else{
-                    std::cout << "NULL node" << std::endl;
-                    break;
-                }
             }
             if(cur_node != NULL){
                 std::vector<int> imgs_id = cur_node->get_ids();
