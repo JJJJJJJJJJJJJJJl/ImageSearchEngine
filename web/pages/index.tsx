@@ -50,7 +50,7 @@ export default function Home(): ReactElement{
             alert("You might want to add some images");
             return null;
         }
-        const res = await fetch("http://localhost:7777/classify", {
+        const res = await fetch("http://localhost:7777/submit_data", {
             method: "POST",
             body: form
         });

@@ -8,8 +8,8 @@ import trie;
 app = Flask(__name__);
 CORS(app);
 
-@app.route("/classify", methods=["POST"])
-def classify():
+@app.route("/submit_data", methods=["POST"])
+def process_input():
     items = None;
     items_perm = None;
     try:
