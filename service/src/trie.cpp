@@ -5,6 +5,9 @@
 
 namespace py = pybind11;
 
+std::vector<std::string> images_url; 
+int id = 0;
+
 class TrieNode{
     private:
         bool root;
@@ -78,16 +81,39 @@ class TrieNode{
             // If image_url exists on MAP, return assigned ID
             // Otherwise assign ID to it
             // Note: Better to store ID's than whole url strings on trie (trading time for memory)
-            int image_id = 1;
+            images_url.push_back(image_url);
 
             /* Recursively traverse trie adding ID */
             for(std::string s : image_description){
-                traverse_and_update(root, image_id, s, 0);
+                traverse_and_update(root, id, s, 0);
             }
+            id++;
         }
 
-        void display_trie(){
-            
+        std::vector<std::string> convert_to_urls(std::vector<int> ids){
+            std::vector<std::string> urls;
+            for(int id : ids){
+                urls.push_back(images_url[id]);
+            }
+            return urls;
+        }
+
+        std::vector<std::string> get_query_results(TrieNode * cur_node, std::string query){
+            for(char c : query){
+                cur_node = cur_node->get_child(c);
+                if(cur_node != NULL){
+                    std::cout << cur_node->get_c() << std::endl;
+                }
+                else{
+                    std::cout << "NULL node" << std::endl;
+                    break;
+                }
+            }
+            if(cur_node != NULL){
+                std::vector<int> imgs_id = cur_node->get_ids();
+                return convert_to_urls(imgs_id);
+            }
+            return std::vector<std::string> {"No matching images."};
         }
 };
 
@@ -99,5 +125,6 @@ PYBIND11_MODULE(trie, handle){
     )
         .def(py::init<bool, char>())
         .def("update_trie", &TrieNode::update_trie)
+        .def("get_query_results", &TrieNode::get_query_results)
     ;
 }

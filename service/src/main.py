@@ -42,7 +42,7 @@ def process_input():
         i = i+1; """
 
     # Create trie (given images and processed descriptions)
-    trie_root = trie.create(items_perm, labels);
+    trie.create(items_perm, labels);
 
     # Save trie in server database or send it back to client (?) **
 
@@ -55,6 +55,13 @@ def process_input():
             a request each time the query string changes. 
     """
     return "temp";
+
+@app.route('/query', methods=['GET'])
+def process_query():
+    results = trie.get_results(request.args['input']);
+    print(results);
+    # Return image_urls !!
+    return results;
 
 def main():
 	app.run(debug=True, host="0.0.0.0", port=7777);
