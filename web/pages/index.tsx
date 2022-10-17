@@ -1,6 +1,7 @@
 import {ReactElement, useEffect, useState} from 'react';
 import SearchBar from '../components/SearchBar';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const MAX_IMAGE_UPLOAD: number = 20; 
 
@@ -44,6 +45,10 @@ export default function Home(): ReactElement{
         return form;
     }
 
+    function handle_submit(){
+        send_images();
+    }
+
     async function send_images(): Promise<void>{
         const form = get_form();
         if(form == null) {
@@ -60,7 +65,7 @@ export default function Home(): ReactElement{
 
     return (
     <div className="flex items-center justify-center bg-contain w-full m-0 p-0 bg-[url('/lean.webp')]">
-        <div className="flex-row items-center justify-center bg-739 p-40 pt-10 m-44 mt-10 border-solid rounded">
+        <div className="flex-row items-center justify-center bg-[url('/bh.gif')] opacity-75 p-40 pt-10 m-44 mt-10 border-solid rounded">
             <h1 className="text-3xl text-center text-orange-100 m-10">
             +++Image Search+++
             </h1>
@@ -72,14 +77,16 @@ export default function Home(): ReactElement{
                 {/* 
                     TODO: create component for button (add it to searchbar component aswell);
                 */}
-                <button onClick={send_images} className="px-4 py-3 m-1 text-slate-600 bg-pink-200">Submit</button>
+                {/* <Link href="/search"> */}
+                    <button onClick={send_images} className="px-4 py-3 m-1 text-slate-600 bg-pink-200">Submit</button>
+                {/* </Link> */}
             </div>
             <div className="flex flex-wrap overflow-y-scroll h-96 mt-10">
                 {/* 
                     TODO: create component for uploaded images
                 */}
                 { images_url.map(imageSrc => 
-                    <div className="flex justify-center basis-1/4 m-6 grow w-min border-dashed rounded">
+                    <div className="flex items-center justify-center basis-1/4 m-6 grow w-min border-dashed rounded">
                         <Image key={imageSrc} src={imageSrc} width={125} height={125}/>
                     </div>
                 )}
@@ -88,9 +95,3 @@ export default function Home(): ReactElement{
     </div>
     );
 };
-
-/*  
-    TODO: create component for this (search bar):
-
-        <SearchBar ph={"slatº,~:`-"}></SearchBar>
-*/

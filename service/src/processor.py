@@ -31,14 +31,8 @@ def process(labels):
     # Tokenization
     processed_labels = tokenize(labels);
 
-    for pl in processed_labels:
-        print(pl);
-
     # Stop word removal
     processed_labels = swr(processed_labels);
-
-    for pl in processed_labels:
-        print(pl);
 
     # Remove duplicates
     processed_labels = del_duplicates(processed_labels);
