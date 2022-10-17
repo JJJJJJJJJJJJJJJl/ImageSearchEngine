@@ -1,5 +1,5 @@
 import {ReactElement, useEffect, useState} from 'react';
-import SearchBar from '../components/SearchBar';
+import Layout from '../components/Layout';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -64,15 +64,11 @@ export default function Home(): ReactElement{
     }
 
     return (
-    <div className="flex items-center justify-center bg-contain w-full m-0 p-0 bg-[url('/lean.webp')]">
-        <div className="flex-row items-center justify-center bg-739 p-40 pt-10 m-44 mt-10 border-solid rounded">
-            <h1 className="text-3xl text-center text-orange-100 m-10">
-            +++Image Search+++
-            </h1>
+        <Layout>
             <div className="flex justify-between">
-                <label className="bg-pink-200 text-slate-700 px-4 py-3 m-1">
+                <label className="bg-pink-200 text-slate-700 px-4 py-3 m-1 hover:cursor-pointer">
                     <input type="file" multiple accept="image/*" onChange={on_image_change} className="text-red-600 hidden"/>
-                    Choose your images ^^
+                    Choose your images
                 </label>
                 {/* 
                     TODO: create component for button (add it to searchbar component aswell);
@@ -86,12 +82,11 @@ export default function Home(): ReactElement{
                     TODO: create component for images showcase
                 */}
                 { images_url.map((imageSrc, index) =>
-                    <div key={imageSrc} className="flex items-center justify-center basis-1/4 m-6 grow w-min border-dashed rounded">
+                    <div key={imageSrc} className="flex items-center justify-center basis-1/4 m-6 grow w-min">
                         <Image src={imageSrc} width={125} height={125}/>
                     </div>
                 )}
             </div>
-        </div>
-    </div>
+        </Layout>
     );
 };
