@@ -77,9 +77,9 @@ export default function Home(): ReactElement{
                 {/* 
                     TODO: create component for button (add it to searchbar component aswell);
                 */}
-                {/* <Link href="/search"> */}
+                <Link href="/search">
                     <button onClick={send_images} className="px-4 py-3 m-1 text-slate-600 bg-pink-200">Submit</button>
-                {/* </Link> */}
+                </Link>
             </div>
             <div className="flex flex-wrap overflow-y-scroll h-96 mt-10">
                 {/* 
