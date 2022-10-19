@@ -1,11 +1,19 @@
 import {useState, ReactElement} from "react";
 
 export default function SearchBar({ph}: {ph: string}): ReactElement {
+    const [query, set_query] = useState<string | null>();
 
+    // when user input query changes
     function handle_query_change(event: React.ChangeEvent<HTMLInputElement>): void{
         send_query(event.target.value);
         return null;
     };
+
+    // when use clicks on magnifier icon
+    function submit_query(): void{
+        send_query(query);
+        return null;
+    }
 
     async function send_query(input: string): Promise<void>{
         const res = await fetch(`http://localhost:7777/query?input=${input}`, {
@@ -26,7 +34,7 @@ export default function SearchBar({ph}: {ph: string}): ReactElement {
                     placeholder={ph}
                     onChange={handle_query_change}
                 />
-                <button className="px-4 text-white bg-red-600 ">
+                <button className="px-4 text-white bg-red-600" onClick={submit_query}>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="w-5 h-5"

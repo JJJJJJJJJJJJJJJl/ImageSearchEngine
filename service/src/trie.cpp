@@ -12,7 +12,7 @@ class TrieNode{
     private:
         bool root;
         char c;
-        std::vector<int> images_id;
+        std::set<int> images_id;
         std::vector<TrieNode *> children;
 
     public:
@@ -30,12 +30,12 @@ class TrieNode{
             return c;
         }
 
-        std::vector<int> get_ids(){
+        std::set<int> get_ids(){
             return images_id;
         }
 
         bool add_image_id(int image_id){
-            images_id.push_back(image_id);
+            images_id.insert(image_id);
             return true;
         }
 
@@ -90,23 +90,35 @@ class TrieNode{
             id++;
         }
 
-        std::vector<std::string> convert_to_urls(std::vector<int> ids){
-            std::vector<std::string> urls;
+        std::vector<std::string> convert_to_urls(std::set<int> ids){
+            std::set<std::string> urls;
             for(int id : ids){
-                urls.push_back(images_url[id]);
+                urls.insert(images_url[id]);
             }
-            return urls;
+            std::vector<std::string> urls_vec;
+            for(auto url : urls){
+                urls_vec.push_back(url);
+            }
+            return urls_vec;
         }
 
         std::vector<std::string> get_query_results(TrieNode * cur_node, std::string query){
+            TrieNode * root = cur_node;
+
             for(char c : query){
-                cur_node = cur_node->get_child(c);
+                TrieNode * curs_child = cur_node->get_child(c);
+                if(curs_child != NULL){
+                    cur_node = cur_node->get_child(c);
+                }
+                else{
+                    break;
+                }
             }
-            if(cur_node != NULL){
-                std::vector<int> imgs_id = cur_node->get_ids();
+            if(cur_node != NULL && cur_node != root){
+                std::set<int> imgs_id = cur_node->get_ids();
                 return convert_to_urls(imgs_id);
             }
-            return std::vector<std::string> {"No matching images."};
+            return std::vector<std::string> {};
         }
 };
 

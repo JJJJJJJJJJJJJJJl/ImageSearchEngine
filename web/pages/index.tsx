@@ -45,10 +45,6 @@ export default function Home(): ReactElement{
         return form;
     }
 
-    function handle_submit(){
-        send_images();
-    }
-
     async function send_images(): Promise<void>{
         const form = get_form();
         if(form == null) {
@@ -59,6 +55,11 @@ export default function Home(): ReactElement{
             method: "POST",
             body: form
         });
+        /* 
+            TODO: add loading screen page while waiting for response.
+            *So I remember later* Reason: wait while model processes
+            and add images to trie
+        */
         console.log("res: " + res);
         return null;
     }

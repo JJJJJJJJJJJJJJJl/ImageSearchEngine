@@ -13,8 +13,12 @@ def create(items, labels):
 
 def get_results(input):
     if len(input) == 0:
-        return ["No matching images."];
-    results = root.get_query_results(root, input);
-    return results;
+        return [];
+    try:
+        results = root.get_query_results(root, input);
+        return results;
+    except Exception as e:
+        print(e);
+        return [];
 
 #create(["ahah", "xd"], [["ah", "xd"],["ok", "plsfckoff"]]);
