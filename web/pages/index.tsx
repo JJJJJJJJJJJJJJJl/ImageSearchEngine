@@ -1,13 +1,12 @@
-import {ReactElement, useEffect, useState} from 'react';
+import React from 'react';
+import { ReactElement, useEffect} from 'react';
 import Layout from '../components/Layout';
-import Image from 'next/image';
+import ImagesShowcase from '../components/ImagesShowcase';
 import Link from 'next/link';
-
-const MAX_IMAGE_UPLOAD: number = 20; 
+import { GlobalContext } from '../context/GlobalContext';
 
 export default function Home(): ReactElement{
-    const [images, set_images] = useState<Array<Blob> | null>(new Array<Blob>());
-    const [images_url, set_images_url] = useState<Array<string> | null>(new Array<string>(MAX_IMAGE_UPLOAD));
+    const { images, set_images, images_url, set_images_url, MAX_IMAGE_UPLOAD } = React.useContext(GlobalContext);
 
     useEffect(() => {
         const images_size: number = images.length;
@@ -78,16 +77,7 @@ export default function Home(): ReactElement{
                     <button onClick={send_images} className="px-4 py-3 m-1 text-slate-700 bg-pink-200">Submit</button>
                 </Link>
             </div>
-            <div className="flex flex-wrap overflow-y-scroll h-96 mt-10">
-                {/* 
-                    TODO: create component for images showcase
-                */}
-                { images_url.map((imageSrc, index) =>
-                    <div key={imageSrc} className="flex items-center justify-center basis-1/4 m-6 grow w-min">
-                        <Image src={imageSrc} width={125} height={125}/>
-                    </div>
-                )}
-            </div>
+            <ImagesShowcase images_url={images_url}/>
         </Layout>
     );
 };

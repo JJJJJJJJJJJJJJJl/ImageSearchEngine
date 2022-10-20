@@ -1,3 +1,4 @@
+from email.mime import image
 from flask import Flask, request;
 from flask_cors import CORS;
 
