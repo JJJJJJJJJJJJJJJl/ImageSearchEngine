@@ -11,7 +11,7 @@ export default function Home(): ReactElement{
     useEffect(() => {
         const images_size: number = images.length;
         if(images_size > 0 && images_size < MAX_IMAGE_UPLOAD+1){
-            const new_images_url = new Array<string>(MAX_IMAGE_UPLOAD);
+            const new_images_url: Array<string> = new Array<string>(MAX_IMAGE_UPLOAD);
             var index: number = 0;
             while(index < images_size){
                 new_images_url.push(URL.createObjectURL(images[index++]));
@@ -59,7 +59,6 @@ export default function Home(): ReactElement{
             *So I remember later* Reason: wait while model processes
             and add images to trie
         */
-        console.log("res: " + res);
         return null;
     }
 
