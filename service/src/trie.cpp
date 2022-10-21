@@ -108,10 +108,10 @@ class TrieNode{
             for(char c : query){
                 TrieNode * curs_child = cur_node->get_child(c);
                 if(curs_child != NULL){
-                    cur_node = cur_node->get_child(c);
+                    cur_node = curs_child;
                 }
                 else{
-                    break;
+                    return std::vector<std::string> {};
                 }
             }
             if(cur_node != NULL && cur_node != root){
