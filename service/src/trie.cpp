@@ -77,10 +77,6 @@ class TrieNode{
         }
 
         void update_trie(TrieNode * root, std::string image_url, std::vector<std::string> image_description){
-            /* Get image_url mapping */
-            // If image_url exists on MAP, return assigned ID
-            // Otherwise assign ID to it
-            // Note: Better to store ID's than whole url strings on trie (trading time for memory)
             images_url.push_back(image_url);
 
             /* Recursively traverse trie adding ID */
@@ -104,6 +100,11 @@ class TrieNode{
 
         std::vector<std::string> get_query_results(TrieNode * cur_node, std::string query){
             TrieNode * root = cur_node;
+
+            if(query.length() == 0){
+                std::set<int> imgs_id = root->get_ids();
+                return convert_to_urls(imgs_id);
+            }
 
             for(char c : query){
                 TrieNode * curs_child = cur_node->get_child(c);

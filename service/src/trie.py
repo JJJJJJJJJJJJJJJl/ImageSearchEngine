@@ -12,8 +12,6 @@ def create(items, labels):
     return root;
 
 def get_results(input):
-    if len(input) == 0:
-        return [];
     try:
         results = root.get_query_results(root, input);
         return results;
