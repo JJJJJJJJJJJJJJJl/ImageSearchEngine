@@ -5,7 +5,7 @@
 
 @layer base {
     html {
-        @apply font-mono bg-[url('/wall.png')]
+        @apply font-sans bg-[url('/wall.png')]
     }
 
     body {
@@ -24,3 +24,7 @@
         }
     */
   }
+.border_lean{
+    @apply border hover:ring-purple-300 hover:outline-none hover:ring hover:ring-opacity-40 hover:border-purple-400 focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40
+
+}

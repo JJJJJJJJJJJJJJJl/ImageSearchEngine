@@ -64,8 +64,8 @@ export default function Home(): ReactElement{
 
     return (
         <Layout>
-            <div className="flex justify-between">
-                <label className="bg-pink-200 text-slate-700 px-4 py-3 m-1 hover:cursor-pointer">
+            <div className="flex justify-between w-3/4 mx-36">
+                <label className="bg-pink-200 font-light text-slate-700 px-4 py-3 m-1 ml-4 hover:cursor-pointer">
                     <input type="file" multiple accept="image/*" onChange={on_image_change} className="text-red-600 hidden"/>
                     Choose your images
                 </label>
@@ -73,7 +73,7 @@ export default function Home(): ReactElement{
                     TODO: create component for button (add it to searchbar component aswell);
                 */}
                 <Link href="/search">
-                    <button onClick={send_images} className="px-4 py-3 m-1 text-slate-700 bg-pink-200">Submit</button>
+                    <button onClick={send_images} className="px-4 py-3 m-1 mr-4 font-light text-slate-700 bg-pink-200">Submit</button>
                 </Link>
             </div>
             <ImagesShowcase images_url={images_url}/>
