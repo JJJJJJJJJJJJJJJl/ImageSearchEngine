@@ -1,11 +1,7 @@
-import React, { useState } from 'react';
-import {ReactElement, useEffect} from "react";
+import React, { ReactElement } from 'react';
 import Image from 'next/image';
-import { GlobalContext } from '../context/GlobalContext';
 
 export default function SearchBar(data: {images_url: Array<string>}): ReactElement {
-    //const { images_url } = React.useContext(GlobalContext);
-
     return (
         <div className="flex flex-wrap overflow-y-scroll h-96 mt-10">
             { data.images_url.map((imageSrc) =>
