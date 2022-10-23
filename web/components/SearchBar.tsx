@@ -41,10 +41,10 @@ export default function SearchBar({ph}: {ph: string}): ReactElement {
     }
 
     return (
-        <div className="flex justify-between w-3/4 mx-36">
+        <div className="flex justify-between w-3/4 mx-auto">
             <input
                 type="text"
-                className="block w-1/3 px-4 py-2 text-pink-200 bg-white border_lean"
+                className="block w-1/3 px-4 py-2 text-purple-300 bg-white border_lean"
                 placeholder={ph}
                 onChange={handle_query_change}
             />
