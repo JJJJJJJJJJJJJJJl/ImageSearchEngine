@@ -9,7 +9,7 @@ export default function SearchBar({children}): ReactElement {
                 </h1>
                 <main>{children}</main>
                 <h1 className="text-center text-pink-200 mt-20 font-light"> +++ FAST REMINISCING +++ </h1>
-                <p className="text-center text-pink-200"><sup className="text-xs font-light"> ⁂ powered by OpenAI:GPT2 </sup></p>
+                <p className="text-center text-pink-200"><sup className="text-xs font-light"> ⁂ powered by <a href="https://openai.com/blog/tags/gpt-2/" target="_blank" className="text-purple-200 hover:text-purple-300">OpenAI:GPT2</a> </sup></p>
             </div>
         </div>
     );
