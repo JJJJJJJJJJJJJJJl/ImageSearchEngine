@@ -2,5 +2,5 @@
     Module responsible for containing file system managers.
 """
 
-dir = "./service";
+dir = "./";
 path = dir+"/models_torchsave";

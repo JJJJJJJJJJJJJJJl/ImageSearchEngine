@@ -11,8 +11,8 @@
 
 #### Run Flask API
 
-- Go to root folder
-- $ python3 service/src/main.py
+- Go to ~/service
+- $ python3 src/main.py
 
 #### Run React Frontend
 
