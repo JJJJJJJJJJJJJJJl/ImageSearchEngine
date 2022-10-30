@@ -7,7 +7,7 @@
 #### Build C++ Trie source code :
 
 - Go to ~/service/src
-- $ cd build && cmake .. && make && cd .. && python3 trie.py
+- $ cd build && rm -rf * | echo "y" && cmake .. && make && cd .. && python3 trie.py
 
 #### Run Flask API
 
