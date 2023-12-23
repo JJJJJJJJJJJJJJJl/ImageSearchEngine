@@ -53,7 +53,7 @@ export default function Home(): ReactElement{
         const res = await fetch("http://localhost:7777/submit_data", {
             method: "POST",
             body: form
-        });
+        })
         /* 
             TODO: add loading screen page while waiting for response.
             *So I remember later* Reason: wait while model processes

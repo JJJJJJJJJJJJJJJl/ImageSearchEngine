@@ -2,7 +2,7 @@
 
 .vscode/
 
-service/models_torchsave/*
+service/src/models_torchsave
 service/album
 service/src/__pycache__
 service/src/build

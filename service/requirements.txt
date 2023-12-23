@@ -5,5 +5,8 @@ nox==2022.8.7
 Pillow==9.3.0
 rich==12.6.0
 setuptools==63.4.1
-torch==1.12.1
+torch
+Werkzeug==2.2.2
+numba==0.57
+numpy==1.24
 transformers==4.23.1
